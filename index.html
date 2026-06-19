@@ -388,14 +388,14 @@
                 
                 <div class="info-block">
                     <strong>Contexto Académico y Comercial:</strong><br>
-                    • <strong>E-Commerce No Convencional:</strong> CV Apart - Tech Co-Living & Workspace, plataforma orientada a la contratación transaccional de entornos de habitabilidad y hardware especializado [cite: User Summary, consigna.txt].<br>
-                    • <strong>Metodología de Almacenamiento:</strong> Estructuras estáticas complejas alojadas en memoria interna [cite: TEMA 7_ Registros.md].<br>
-                    • <strong>Autor:</strong> Clivio Nicolás Vera Ortiz (Ingeniería en Sistemas de Información - UTN FRRE) [cite: User Summary].
+                    • <strong>E-Commerce No Convencional:</strong> CV Apart - Tech Co-Living & Workspace, plataforma orientada a la contratación transaccional de entornos de habitabilidad y hardware especializado.<br>
+                    • <strong>Metodología de Almacenamiento:</strong> Estructuras estáticas complejas alojadas en memoria interna  .<br>
+                    • <strong>Autor:</strong> Clivio Nicolás Vera Ortiz (Ingeniería en Sistemas de Información - UTN FRRE).
                 </div>
 
                 <h5>Definición Literaria del Ambiente (Estructuras Heterogéneas)</h5>
                 <p style="font-size: 0.9rem; margin-bottom: 1rem; color: #475569;">
-                    Se modela la información utilizando la nomenclatura formal de la cátedra para representar las entidades en memoria RAM antes de cualquier proceso de persistencia [cite: TEMA 7_ Registros.md].
+                    Se modela la información utilizando la nomenclatura formal de la cátedra para representar las entidades en memoria RAM antes de cualquier proceso de persistencia  .
                 </p>
 
                 <h5>1. Estructura de Sub-registro (Campo Continente)</h5>
@@ -424,17 +424,17 @@ FIN_REGISTRO
                 <h5>Justificación Científica del Modelo Estructurado</h5>
                 <ul class="doc-list">
                     <li>
-                        <strong>Propiedad de Heterogeneidad:</strong> Como dictamina la teoría, el registro <code>AlojamientoTech</code> unifica bajo una misma entidad lógica diferentes tipos elementales (<code>Entero</code>, <code>Real</code>, <code>Carácter</code>) y complejos (<code>Fecha</code>), optimizando el tratamiento de la información como un bloque de memoria indivisible [cite: TEMA 7_ Registros.md].
+                        <strong>Propiedad de Heterogeneidad:</strong> Como dictamina la teoría, el registro <code>AlojamientoTech</code> unifica bajo una misma entidad lógica diferentes tipos elementales (<code>Entero</code>, <code>Real</code>, <code>Carácter</code>) y complejos (<code>Fecha</code>), optimizando el tratamiento de la información como un bloque de memoria indivisible.
                     </li>
                     <li>
-                        <strong>Campos Continentes vs Contenidos:</strong> Los campos como <code>id_apartado</code> o `tarifa_diaria` son de tipo contenido ya que almacenan un dato atómico simple [cite: TEMA 7_ Registros.md]. En contraposición, <code>fecha_alta</code> es un campo continente porque subdivide su estructura interna en múltiples tipos elementales independientes (día, mes, año) [cite: TEMA 7_ Registros.md].
+                        <strong>Campos Continentes vs Contenidos:</strong> Los campos como <code>id_apartado</code> o `tarifa_diaria` son de tipo contenido ya que almacenan un dato atómico simple. En contraposición, <code>fecha_alta</code> es un campo continente porque subdivide su estructura interna en múltiples tipos elementales independientes (día, mes, año).
                     </li>
                     <li>
-                        <strong>Acceso Mediante Selector de Campo:</strong> Para leer o escribir en las jerarquías más profundas de la estructura en los algoritmos, se utiliza el operador de indirección directa (punto) [cite: TEMA 7_ Registros.md]. Por ejemplo, la validación temporal se computa mediante el selector: <br>
-                        <code>AlojamientoTech.fecha_alta.anio</code> [cite: TEMA 7_ Registros.md]
+                        <strong>Acceso Mediante Selector de Campo:</strong> Para leer o escribir en las jerarquías más profundas de la estructura en los algoritmos, se utiliza el operador de indirección directa (punto). Por ejemplo, la validación temporal se computa mediante el selector: <br>
+                        <code>AlojamientoTech.fecha_alta.anio</code>
                     </li>
                     <li>
-                        <strong>Análisis y Elección de la Clave Primaria:</strong> El campo <code>id_apartado</code> fue determinado como la Clave Primaria debido a que cumple con el axioma de unicidad absoluta: no se repite bajo ninguna circunstancia entre distintos registros de la secuencia [cite: TEMA 7_ Registros.md]. Campos numéricos de tipo <code>Real</code> como la tarifa o alfanuméricos como la denominación se descartan por completo ya que admiten duplicidad de valores en el procesamiento masivo de datos, lo que rompería la integridad de la estructura [cite: TEMA 7_ Registros.md].
+                        <strong>Análisis y Elección de la Clave Primaria:</strong> El campo <code>id_apartado</code> fue determinado como la Clave Primaria debido a que cumple con el axioma de unicidad absoluta: no se repite bajo ninguna circunstancia entre distintos registros de la secuencia  . Campos numéricos de tipo <code>Real</code> como la tarifa o alfanuméricos como la denominación se descartan por completo ya que admiten duplicidad de valores en el procesamiento masivo de datos, lo que rompería la integridad de la estructura.
                     </li>
                 </ul>
 
