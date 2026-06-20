@@ -14,12 +14,13 @@
             --text-main: #334155;
             --text-light: #f1f5f9;
             --border-color: #cbd5e1;
+            --success: #10b981;
         }
 
-        * {
+        *, *::before, *::after {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
@@ -52,6 +53,11 @@
             color: var(--accent);
         }
 
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
         nav a {
             color: var(--text-light);
             text-decoration: none;
@@ -66,10 +72,28 @@
             color: var(--accent);
         }
 
+        .cart-trigger {
+            background: none;
+            border: 1px solid var(--accent);
+            color: var(--text-light);
+            padding: 0.5rem 1rem;
+            margin-left: 2rem;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            transition: background 0.3s;
+        }
+
+        .cart-trigger:hover {
+            background: var(--accent);
+            color: var(--primary);
+        }
+
         .hero {
             background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(30, 41, 59, 0.85)), 
                         url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1600&q=80') no-repeat center center/cover;
-            height: 50vh;
+            height: 40vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -217,72 +241,119 @@
             letter-spacing: 1px;
             border-radius: 4px;
             transition: background-color 0.2s ease;
+            border: none;
+            cursor: pointer;
         }
 
         .btn-action:hover {
             background-color: #1e293b;
         }
 
-        .tech-docs {
-            background-color: #ffffff;
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
+        /* Lateral - Carrito de Compras */
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 400px;
+            height: 100vh;
+            background-color: white;
+            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+            z-index: 2000;
+            transition: right 0.3s ease;
             padding: 2rem;
-            margin-top: 4rem;
+            display: flex;
+            flex-direction: column;
         }
 
-        .docs-summary {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--primary);
+        .cart-sidebar.open {
+            right: 0;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .close-cart {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
             cursor: pointer;
-            user-select: none;
-            outline: none;
+            color: var(--text-main);
         }
 
-        .docs-container {
-            margin-top: 1.5rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid #e2e8f0;
+        .cart-items {
+            flex-grow: 1;
+            overflow-y: auto;
         }
 
-        .info-block {
-            background-color: #f1f5f9;
-            border-left: 4px solid var(--accent);
+        .cart-item {
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
             padding: 1rem;
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
+            background-color: var(--bg-light);
+        }
+
+        .cart-item h5 {
+            font-size: 0.95rem;
+            color: var(--primary);
+            margin-bottom: 0.3rem;
+        }
+
+        .cart-item p {
+            font-size: 0.85rem;
+            color: #64748b;
+        }
+
+        /* Formulario Simulacro de Reserva */
+        .reservation-form {
+            margin-top: 1.5rem;
+            border-top: 2px dashed var(--border-color);
+            padding-top: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 0.8rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 0.2rem;
+            text-transform: uppercase;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
             font-size: 0.9rem;
         }
 
-        h5 {
-            font-size: 1rem;
-            color: var(--primary);
-            margin: 1.5rem 0 0.5rem 0;
-            text-transform: uppercase;
-            font-weight: 600;
+        .date-row {
+            display: flex;
+            gap: 0.5rem;
         }
 
-        pre {
-            background-color: var(--primary);
-            color: #e2e8f0;
-            padding: 1.2rem;
+        /* Monitor Algorítmico (Simulador Backend) */
+        .backend-monitor {
+            background-color: #0f172a;
+            color: #34d399;
+            padding: 1rem;
             border-radius: 4px;
             font-family: 'Courier New', Courier, monospace;
-            font-size: 0.85rem;
-            line-height: 1.5;
-            overflow-x: auto;
-            margin-bottom: 1.5rem;
-        }
-
-        .doc-list {
-            margin-left: 1.5rem;
-            margin-bottom: 1.5rem;
-            font-size: 0.9rem;
-            color: #475569;
-        }
-
-        .doc-list li {
-            margin-bottom: 0.5rem;
+            font-size: 0.8rem;
+            margin-top: 1rem;
+            display: none;
+            max-height: 200px;
+            overflow-y: auto;
         }
 
         footer {
@@ -304,7 +375,7 @@
         </div>
         <nav>
             <a href="#unidades">Espacios Tech</a>
-            <a href="#documentacion">Especificación Estructural</a>
+            <button class="cart-trigger" onclick="toggleCart()">Ver Token Solicitado (<span id="cart-count">0</span>)</button>
         </nav>
     </header>
 
@@ -315,7 +386,7 @@
 
     <main class="container">
         
-        <h3 class="section-title" id="unidades">Unidades de Alto Rendimiento disponibles</h3>
+        <h3 class="section-title" id="unidades">Unidades de Alto Rendimiento Disponibles</h3>
         
         <div class="grid-aparts">
             
@@ -331,11 +402,9 @@
                         <span>ID: 201</span>
                         <span>•</span>
                         <span>Capacidad: 2 Pers.</span>
-                        <span>•</span>
-                        <span>Estación de Trabajo</span>
                     </div>
                     <p class="card-text">Monoambiente optimizado con escritorio ergonómico, monitor curvo de 32" integrado al mobiliario, UPS de respaldo eléctrico y conectividad redundante.</p>
-                    <a href="#" class="btn-action">Reservar Token de Estadía</a>
+                    <button class="btn-action" onclick="addToCart(201, 'Dev Studio Suite', 48000, 2)">Seleccionar Espacio</button>
                 </div>
             </div>
 
@@ -351,11 +420,9 @@
                         <span>ID: 202</span>
                         <span>•</span>
                         <span>Capacidad: 4 Pers.</span>
-                        <span>•</span>
-                        <span>Sala de Reuniones</span>
                     </div>
                     <p class="card-text">Dos ambientes amplios en cercanía a la facultad. Cuenta con sala equipada para videoconferencias, pizarra de cristal templado y domótica integral.</p>
-                    <a href="#" class="btn-action">Reservar Token de Estadía</a>
+                    <button class="btn-action" onclick="addToCart(202, 'Cloud Nomad Duplex', 68000, 4)">Seleccionar Espacio</button>
                 </div>
             </div>
 
@@ -371,81 +438,213 @@
                         <span>ID: 203</span>
                         <span>•</span>
                         <span>Capacidad: 3 Pers.</span>
-                        <span>•</span>
-                        <span>Silent Zone</span>
                     </div>
                     <p class="card-text">Insonorización acústica profesional en aberturas. Ideal para programadores en fases de despliegue crítico o investigadores que requieren concentración absoluta.</p>
-                    <a href="#" class="btn-action">Reservar Token de Estadía</a>
+                    <button class="btn-action" onclick="addToCart(203, 'FullStack Focus Apart', 56000, 3)">Seleccionar Espacio</button>
+                </div>
+            </div>
+
+            <!-- Unidad 4 -->
+            <div class="card">
+                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80')">
+                    <span class="tag-tech">Cyber Security Bunker</span>
+                    <div class="price-badge">$72.000 / día</div>
+                </div>
+                <div class="card-body">
+                    <h4 class="card-title">SecOps Safehouse - Barrio Güemes</h4>
+                    <div class="card-meta">
+                        <span>ID: 204</span>
+                        <span>•</span>
+                        <span>Capacidad: 2 Pers.</span>
+                    </div>
+                    <p class="card-text">Infraestructura blindada digitalmente. Firewall físico por hardware incorporado, conexiones WAN redundantes cruzadas y alimentación eléctrica aislada.</p>
+                    <button class="btn-action" onclick="addToCart(204, 'SecOps Safehouse', 72000, 2)">Seleccionar Espacio</button>
+                </div>
+            </div>
+
+            <!-- Unidad 5 -->
+            <div class="card">
+                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1558882224-cca166733360?auto=format&fit=crop&w=800&q=80')">
+                    <span class="tag-tech">Cluster de Cómputo Local</span>
+                    <div class="price-badge">$85.000 / día</div>
+                </div>
+                <div class="card-body">
+                    <h4 class="card-title">Data Science Lab - Av. Sarmiento</h4>
+                    <div class="card-meta">
+                        <span>ID: 205</span>
+                        <span>•</span>
+                        <span>Capacidad: 5 Pers.</span>
+                    </div>
+                    <p class="card-text">Especializado para procesamiento de datos masivos. Unidad equipada con un rack de servidores local frío, conexiones de alta potencia y refrigeración reforzada.</p>
+                    <button class="btn-action" onclick="addToCart(205, 'Data Science Lab', 85000, 5)">Seleccionar Espacio</button>
+                </div>
+            </div>
+
+            <!-- Unidad 6 -->
+            <div class="card">
+                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80')">
+                    <span class="tag-tech">Energía Solar Sustentable</span>
+                    <div class="price-badge">$60.000 / día</div>
+                </div>
+                <div class="card-body">
+                    <h4 class="card-title">DevOps Green Penthouse - Zona Norte</h4>
+                    <div class="card-meta">
+                        <span>ID: 206</span>
+                        <span>•</span>
+                        <span>Capacidad: 2 Pers.</span>
+                    </div>
+                    <p class="card-text">Independencia energética total mediante paneles fotovoltaicos y bancos de baterías dedicados. Garantía de uptime absoluto ante contingencias externas en la red.</p>
+                    <button class="btn-action" onclick="addToCart(206, 'DevOps Green Penthouse', 60000, 2)">Seleccionar Espacio</button>
                 </div>
             </div>
 
         </div>
 
-        <!-- Seccion de Especificaciones Tecnicas Exigidas por la Unidad 2 de AED -->
-        <details class="tech-docs" id="documentacion" open>
-            <summary class="docs-summary">⚙️ INFORME TÉCNICO DE BACKEND (Unidad 2 - Estructuras Tipo Registro)</summary>
-            <div class="docs-container">
-                
-                <div class="info-block">
-                    <strong>Contexto Académico y Comercial:</strong><br>
-                    • <strong>E-Commerce No Convencional:</strong> CV Apart - Tech Co-Living & Workspace, plataforma orientada a la contratación transaccional de entornos de habitabilidad y hardware especializado.<br>
-                    • <strong>Metodología de Almacenamiento:</strong> Estructuras estáticas complejas alojadas en memoria interna  .<br>
-                    • <strong>Autor:</strong> Clivio Nicolás Vera Ortiz (Ingeniería en Sistemas de Información - UTN FRRE).
-                </div>
-
-                <h5>Definición Literaria del Ambiente (Estructuras Heterogéneas)</h5>
-                <p style="font-size: 0.9rem; margin-bottom: 1rem; color: #475569;">
-                    Se modela la información utilizando la nomenclatura formal de la cátedra para representar las entidades en memoria RAM antes de cualquier proceso de persistencia  .
-                </p>
-
-                <h5>1. Estructura de Sub-registro (Campo Continente)</h5>
-                <pre>
-REGISTRO: Fecha
-CAMPOS:
-    dia  : Entero   // Rango válido: 1..31
-    mes  : Entero   // Rango válido: 1..12
-    anio : Entero   // Representación de cuatro dígitos
-FIN_REGISTRO
-                </pre>
-
-                <h5>2. Registro Principal (Entidad de Servicio)</h5>
-                <pre>
-REGISTRO: AlojamientoTech
-CAMPOS:
-    id_apartado    : Entero        // Campo Contenido - CLAVE PRIMARIA (Identificador unívoco)
-    denominacion   : AN(50)        // Campo Contenido - Tipo Alfanumérico para descripción comercial
-    capacidad_max  : Entero        // Campo Contenido - Capacidad física de la unidad
-    tarifa_diaria  : Real          // Campo Contenido - Datos numéricos de precisión con punto flotante
-    fecha_alta     : Fecha         // CAMPO CONTINENTE - Registro anidado para control temporal
-    disponibilidad : Carácter      // Campo Contenido - Operaciones binarias lógicas ('D'= Disponible, 'O'= Ocupado)
-FIN_REGISTRO
-                </pre>
-
-                <h5>Justificación Científica del Modelo Estructurado</h5>
-                <ul class="doc-list">
-                    <li>
-                        <strong>Propiedad de Heterogeneidad:</strong> Como dictamina la teoría, el registro <code>AlojamientoTech</code> unifica bajo una misma entidad lógica diferentes tipos elementales (<code>Entero</code>, <code>Real</code>, <code>Carácter</code>) y complejos (<code>Fecha</code>), optimizando el tratamiento de la información como un bloque de memoria indivisible.
-                    </li>
-                    <li>
-                        <strong>Campos Continentes vs Contenidos:</strong> Los campos como <code>id_apartado</code> o `tarifa_diaria` son de tipo contenido ya que almacenan un dato atómico simple. En contraposición, <code>fecha_alta</code> es un campo continente porque subdivide su estructura interna en múltiples tipos elementales independientes (día, mes, año).
-                    </li>
-                    <li>
-                        <strong>Acceso Mediante Selector de Campo:</strong> Para leer o escribir en las jerarquías más profundas de la estructura en los algoritmos, se utiliza el operador de indirección directa (punto). Por ejemplo, la validación temporal se computa mediante el selector: <br>
-                        <code>AlojamientoTech.fecha_alta.anio</code>
-                    </li>
-                    <li>
-                        <strong>Análisis y Elección de la Clave Primaria:</strong> El campo <code>id_apartado</code> fue determinado como la Clave Primaria debido a que cumple con el axioma de unicidad absoluta: no se repite bajo ninguna circunstancia entre distintos registros de la secuencia  . Campos numéricos de tipo <code>Real</code> como la tarifa o alfanuméricos como la denominación se descartan por completo ya que admiten duplicidad de valores en el procesamiento masivo de datos, lo que rompería la integridad de la estructura.
-                    </li>
-                </ul>
-
-            </div>
-        </details>
-
     </main>
+
+    <!-- Carrito Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h4>E-Commerce Checkout</h4>
+            <button class="close-cart" onclick="toggleCart()">&times;</button>
+        </div>
+        
+        <div class="cart-items" id="cartItems">
+            <p style="color: #64748b; text-align: center; margin-top: 2rem;">No seleccionaste ningún espacio tecnológico operativo aún.</p>
+        </div>
+
+        <div class="reservation-form" id="resForm" style="display: none;">
+            <h4>Simulacro de Registro Transaccional</h4>
+            
+            <div class="form-group">
+                <label>Nombre del Cliente (AN)</label>
+                <input type="text" id="custName" class="form-control" value="Clivio Nicolás Vera Ortiz">
+            </div>
+            
+            <div class="form-group">
+                <label>DNI Cliente (N)</label>
+                <input type="number" id="custDni" class="form-control" value="47355123">
+            </div>
+
+            <div class="form-group">
+                <label>Fecha Check-In (Campo Continente)</label>
+                <div class="date-row">
+                    <input type="number" id="checkDia" class="form-control" placeholder="DD" min="1" max="31" value="20">
+                    <input type="number" id="checkMes" class="form-control" placeholder="MM" min="1" max="12" value="6">
+                    <input type="number" id="checkAnio" class="form-control" placeholder="AAAA" min="2026" max="2030" value="2026">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Cantidad de Noches (Entero)</label>
+                <input type="number" id="stayNights" class="form-control" value="3" min="1" oninput="calculateTotal()">
+            </div>
+
+            <div style="margin-top: 1rem; margin-bottom: 1rem; font-weight: bold; color: var(--primary);">
+                Monto Total (Real): <span id="totalMonto">$0.00</span>
+            </div>
+
+            <button class="btn-action" style="background-color: var(--success);" onclick="executeReservationSimulation()">Confirmar Reserva (Generar Registro)</button>
+        </div>
+
+        <div class="backend-monitor" id="monitor"></div>
+    </div>
 
     <footer>
         <p>&copy; 2026 CV Apart - Tech Co-Living. Cátedra de Algoritmos y Estructuras de Datos | UTN Facultad Regional Resistencia.</p>
     </footer>
 
+    <script>
+        let selectedApart = null;
+
+        function toggleCart() {
+            document.getElementById('cartSidebar').classList.toggle('open');
+        }
+
+        function addToCart(id, name, price, capacity) {
+            selectedApart = { id, name, price, capacity };
+            
+            // Actualizar vista del carrito
+            const itemsContainer = document.getElementById('cartItems');
+            itemsContainer.innerHTML = `
+                <div class="cart-item">
+                    <h5>${selectedApart.name}</h5>
+                    <p><strong>ID Estructura:</strong> ${selectedApart.id}</p>
+                    <p><strong>Tarifa base:</strong> $${selectedApart.price.toLocaleString('es-AR')} / día</p>
+                    <p><strong>Capacidad máxima:</strong> ${selectedApart.capacity} personas</p>
+                    <p><strong>Estado lógico en Memoria:</strong> 'D' (Disponible)</p>
+                </div>
+            `;
+
+            document.getElementById('cart-count').innerText = "1";
+            document.getElementById('resForm').style.display = "block";
+            document.getElementById('monitor').style.display = "none";
+            
+            calculateTotal();
+            if(!document.getElementById('cartSidebar').classList.contains('open')) {
+                toggleCart();
+            }
+        }
+
+        function calculateTotal() {
+            if (!selectedApart) return;
+            const nights = parseInt(document.getElementById('stayNights').value) || 0;
+            const total = selectedApart.price * nights;
+            document.getElementById('totalMonto').innerText = '$' + total.toLocaleString('es-AR');
+            return total;
+        }
+
+        function executeReservationSimulation() {
+            if (!selectedApart) return;
+
+            const name = document.getElementById('custName').value;
+            const dni = document.getElementById('custDni').value;
+            const dia = parseInt(document.getElementById('checkDia').value);
+            const mes = parseInt(document.getElementById('checkMes').value);
+            const anio = parseInt(document.getElementById('checkAnio').value);
+            const noches = parseInt(document.getElementById('stayNights').value);
+            const total = selectedApart.price * noches;
+
+            // Simulación exacta del volcado a la estructura física del Registro definido en AED
+            const registroReservaMock = {
+                REGISTRO_RESERVA: {
+                    id_reserva: Math.floor(Math.random() * 9000) + 1000, // Clave Primaria de Transacción
+                    id_depto: selectedApart.id,                         // Clave Foránea vinculada
+                    dni_cliente: parseInt(dni),                          // Clave Secundaria
+                    nombre_cliente: name.substring(0, 45),
+                    fecha_check_in: {                                    // Campo Continente (Registro Anidado)
+                        dia: dia,
+                        mes: mes,
+                        anio: anio
+                    },
+                    cant_noches: noches,
+                    monto_total: parseFloat(total)                       // Tipo de dato Real
+                }
+            };
+
+            const monitor = document.getElementById('monitor');
+            monitor.style.display = "block";
+            monitor.innerHTML = `
+// VOLCADO DE MEMORIA EN AMBIENTE DE DATOS:
+// Registro estructura cargado exitosamente.
+
+REGISTRO: Reserva
+  id_reserva     := ${registroReservaMock.REGISTRO_RESERVA.id_reserva} (Entero)
+  id_depto       := ${registroReservaMock.REGISTRO_RESERVA.id_depto} (Entero - FK)
+  dni_cliente    := ${registroReservaMock.REGISTRO_RESERVA.dni_cliente} (Entero - SK)
+  nombre_cliente := "${registroReservaMock.REGISTRO_RESERVA.nombre_cliente}" (AN)
+  fecha_check_in := REGISTRO (Campo Continente)
+      .dia  := ${registroReservaMock.REGISTRO_RESERVA.fecha_check_in.dia} (Entero)
+      .mes  := ${registroReservaMock.REGISTRO_RESERVA.fecha_check_in.mes} (Entero)
+      .anio := ${registroReservaMock.REGISTRO_RESERVA.fecha_check_in.anio} (Entero)
+  cant_noches    := ${registroReservaMock.REGISTRO_RESERVA.cant_noches} (Entero)
+  monto_total    := ${registroReservaMock.REGISTRO_RESERVA.monto_total}.00 (Real)
+FIN_REGISTRO
+
+// Estado del depto ID ${selectedApart.id} mutó a disponibilidad = 'O' (Ocupado)
+            `;
+            alert("Simulación de Reserva procesada. El volcado de memoria interna se visualiza en la consola inferior.");
+        }
+    </script>
 </body>
 </html>
